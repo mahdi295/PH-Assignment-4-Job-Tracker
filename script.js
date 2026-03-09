@@ -158,12 +158,58 @@ mainContainer.addEventListener("click", function (event) {
     //count the card from rejected
     calculateCount();
   }
+
+  //for delete card
+  else if (event.target.closest(".delete-btn")) {
+    let parentNode = event.target.closest(".job-card");
+    let jobTitle = parentNode.querySelector(".job-title").innerText;
+
+    //remove from array
+    interviewList = interviewList.filter((i) => i.jobTitle != jobTitle);
+    rejectedList = rejectedList.filter((i) => i.jobTitle != jobTitle);
+
+    //remove
+    parentNode.remove();
+
+    //
+    if (currentStatus === "interview-filter-btn") {
+      renderInterview();
+    }
+    if (currentStatus === "rejected-filter-btn") {
+      renderRejected();
+    }
+
+    //update count
+    calculateCount();
+  }
+
 });
 
 //render sections
 
 function renderInterview() {
   filterSection.innerHTML = "";
+
+  if (interviewList.length === 0) {
+    filterSection.innerHTML = `
+        <section
+        class="mt-5 shadow-sm card bg-base-100 card-xl h-96"
+      >
+        <div
+          class="flex flex-col items-center justify-center mx-auto text-center card-body"
+        >
+          <div>
+            <img src="./jobs.png" alt="" />
+          </div>
+          <div>
+            <h2 class="text-xl font-bold">No jobs available</h2>
+            <p>Check back soon for new job opportunities</p>
+          </div>
+        </div>
+      </section>
+        `;
+    return;
+  }
 
   for (let interview of interviewList) {
     let div = document.createElement("div");
@@ -216,6 +262,27 @@ function renderInterview() {
 function renderRejected() {
   filterSection.innerHTML = "";
   
+    if (rejectedList.length === 0) {
+      filterSection.innerHTML = `
+        <section
+        class="mt-5 shadow-sm card bg-base-100 card-xl h-96"
+      >
+        <div
+          class="flex flex-col items-center justify-center mx-auto text-center card-body"
+        >
+          <div>
+            <img src="./jobs.png" alt="" />
+          </div>
+          <div>
+            <h2 class="text-xl font-bold">No jobs available</h2>
+            <p>Check back soon for new job opportunities</p>
+          </div>
+        </div>
+      </section>
+        `;
+      return;
+    }
+
   for (let rejected of rejectedList) {
     let div = document.createElement("div");
     div.className =
