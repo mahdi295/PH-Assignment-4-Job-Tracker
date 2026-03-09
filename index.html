@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body class="w-[90%] mx-auto">
+    <header class="sticky top-0 z-10 bg-white">
+      <h1 class="mt-5 text-2xl font-bold text-blue-900">
+        Job Application Tracker
+      </h1>
+
+      <!--dashboard count-->
+      <div class="grid grid-cols-3 gap-4 mt-4">
+        <div class="shadow-sm card card-body bg-base-100 card-border">
+          <p class="card-title">Total</p>
+          <p id="total-count" class="text-2xl font-bold">0</p>
+        </div>
+        <div class="shadow-sm card card-body bg-base-100 card-border">
+          <p class="card-title">Interview</p>
+          <p id="interview-count" class="text-2xl font-bold text-green-500">
+            0
+          </p>
+        </div>
+        <div class="shadow-sm card card-body bg-base-100 card-border">
+          <p class="card-title">Rejected</p>
+          <p id="rejected-count" class="text-2xl font-bold text-red-500">0</p>
+        </div>
+      </div>
+    </header>
+
+    <hr class="my-10 border border-gray-200" />
+
+    <main class="w-[85%] mx-auto">
+      <!--tab button-->
+      <section class="space-y-3">
+        <div class="flex justify-between">
+          <h2 class="text-xl font-bold text-blue-950">Available Jobs</h2>
+          <p id="job-total-text">0 jobs</p>
+        </div>
+        <div class="flex gap-3 tabBtn">
+          <button
+            
+            id="all-filter-btn"
+            class="btn btn-primary btn-outline btn-active"
+          >
+            All
+          </button>
+          <button
+            
+            id="interview-filter-btn"
+            class="btn btn-primary btn-outline"
+          >
+            Interview
+          </button>
+          <button
+            
+            id="rejected-filter-btn"
+            class="btn btn-primary btn-outline"
+          >
+            Rejected
+          </button>
+        </div>
+      </section>
+        <!--filtered section-->      
+      <section id="filter-section" class="hidden">
+        
+      </section>
+      
+      <!--all card-->
+      <section class="mt-6 space-y-6" id="all-cards">
+        <!--card 1-->
+        <div
+          class="flex justify-between p-8 border-transparent shadow-sm job-card"
+        >
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <h1 class="text-xl font-bold job-title">Mobile First Corp</h1>
+              <p class="job-role text-gray-500/100">React Native Developer</p>
+            </div>
+            <div>
+              <p class="job-offer text-gray-500/100">
+                Remote • Full-time • $130,000 - $175,000
+              </p>
+            </div>
+
+            <div class="space-y-2">
+              <p
+                class="p-5 mb-5 font-bold text-black bg-blue-300 badge"
+              >
+                NOT APPLIED
+              </p>
+              <p class="job-note text-gray-500/100">
+                Build cross-platform mobile applications using React Native.
+                <br />Work on products used by millions of users worldwide.
+              </p>
+            </div>
+
+            <div class="flex gap-4">
+              <button class="p-4 bg-green-200 rounded-xl interview-btn">
+                Interview
+              </button>
+              <button class="p-4 bg-red-200 rounded-xl rejected-btn">
+                Rejected
+              </button>
+            </div>
+          </div>
+
+          <div class="flex-shrink-0">
+            <button class="p-2 border rounded-full delete-btn">
+              <img src="./Trash.png" alt="Delete" />
+            </button>
+          </div>
+        </div>
+        <!-- card 2 -->
+        <div
+          class="flex justify-between p-8 border-transparent shadow-sm job-card"
+        >
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <h1 class="text-xl font-bold job-title">TechNova Solutions</h1>
+              <p class="job-role text-gray-500/100">Frontend Engineer</p>
+            </div>
+            <div>
+              <p class="job-offer text-gray-500/100">
+                Hybrid • Full-time • $95,000 - $120,000
+              </p>
+            </div>
+            <div class="space-y-2">
+              <p class="p-5 mb-5 font-bold text-black bg-blue-300 badge">
+                NOT APPLIED
+              </p>
+              <p class="job-note text-gray-500/100">
+                Design and implement responsive web interfaces using React and
+                Tailwind CSS.
+              </p>
+            </div>
+            <div class="flex gap-4">
+              <button class="p-4 bg-green-200 rounded-xl interview-btn">
+                Interview
+              </button>
+              <button class="p-4 bg-red-200 rounded-xl rejected-btn">
+                Rejected
+              </button>
+            </div>
+          </div>
+          <div class="flex-shrink-0">
+            <button class="p-2 border rounded-full delete-btn">
+              <img src="./Trash.png" alt="Delete" />
+            </button>
+          </div>
+        </div>
+
+        <!-- card 3 -->
+        <div
+          class="flex justify-between p-8 border-transparent shadow-sm job-card"
+        >
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <h1 class="text-xl font-bold job-title">CloudWorks Inc</h1>
+              <p class="job-role text-gray-500/100">DevOps Engineer</p>
+            </div>
+            <div>
+              <p class="job-offer text-gray-500/100">
+                Remote • Contract • $70/hr
+              </p>
+            </div>
+            <div class="space-y-2">
+              <p class="p-5 mb-5 font-bold text-black bg-blue-300 badge">
+                NOT APPLIED
+              </p>
+              <p class="job-note text-gray-500/100">
+                Maintain CI/CD pipelines and automate infrastructure deployments
+                on AWS.
+              </p>
+            </div>
+            <div class="flex gap-4">
+              <button class="p-4 bg-green-200 rounded-xl interview-btn">
+                Interview
+              </button>
+              <button class="p-4 bg-red-200 rounded-xl rejected-btn">
+                Rejected
+              </button>
+            </div>
+          </div>
+          <div class="flex-shrink-0">
+            <button class="p-2 border rounded-full delete-btn">
+              <img src="./Trash.png" alt="Delete" />
+            </button>
+          </div>
+        </div>
+
+        <!-- card 4 -->
+        <div
+          class="flex justify-between p-8 border-transparent shadow-sm job-card"
+        >
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <h1 class="text-xl font-bold job-title">DataSphere Analytics</h1>
+              <p class="job-role text-gray-500/100">Data Scientist</p>
+            </div>
+            <div>
+              <p class="job-offer text-gray-500/100">
+                On-site • Full-time • $110,000 - $140,000
+              </p>
+            </div>
+            <div class="space-y-2">
+              <p class="p-5 mb-5 font-bold text-black bg-blue-300 badge">
+                NOT APPLIED
+              </p>
+              <p class="job-note text-gray-500/100">
+                Analyze large datasets and build predictive models to support
+                business decisions.
+              </p>
+            </div>
+            <div class="flex gap-4">
+              <button class="p-4 bg-green-200 rounded-xl interview-btn">
+                Interview
+              </button>
+              <button class="p-4 bg-red-200 rounded-xl rejected-btn">
+                Rejected
+              </button>
+            </div>
+          </div>
+          <div class="flex-shrink-0">
+            <button class="p-2 border rounded-full delete-btn">
+              <img src="./Trash.png" alt="Delete" />
+            </button>
+          </div>
+        </div>
+
+        <!-- card 5 -->
+        <div
+          class="flex justify-between p-8 border-transparent shadow-sm job-card"
+        >
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <h1 class="text-xl font-bold job-title">FinTech Global</h1>
+              <p class="job-role text-gray-500/100">Backend Developer</p>
+            </div>
+            <div>
+              <p class="job-offer text-gray-500/100">
+                Remote • Full-time • $100,000 - $135,000
+              </p>
+            </div>
+            <div class="space-y-2">
+              <p class="p-5 mb-5 font-bold text-black bg-blue-300 badge">
+                NOT APPLIED
+              </p>
+              <p class="job-note text-gray-500/100">
+                Develop scalable APIs and microservices using Node.js and
+                PostgreSQL.
+              </p>
+            </div>
+            <div class="flex gap-4">
+              <button class="p-4 bg-green-200 rounded-xl interview-btn">
+                Interview
+              </button>
+              <button class="p-4 bg-red-200 rounded-xl rejected-btn">
+                Rejected
+              </button>
+            </div>
+          </div>
+          <div class="flex-shrink-0">
+            <button class="p-2 border rounded-full delete-btn">
+              <img src="./Trash.png" alt="Delete" />
+            </button>
+          </div>
+        </div>
+
+        <!-- card 6 -->
+        <div
+          class="flex justify-between p-8 border-transparent shadow-sm job-card"
+        >
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <h1 class="text-xl font-bold job-title">HealthTech Systems</h1>
+              <p class="job-role text-gray-500/100">UI/UX Designer</p>
+            </div>
+            <div>
+              <p class="job-offer text-gray-500/100">
+                Hybrid • Full-time • $85,000 - $105,000
+              </p>
+            </div>
+            <div class="space-y-2">
+              <p class="p-5 mb-5 font-bold text-black bg-blue-300 badge">
+                NOT APPLIED
+              </p>
+              <p class="job-note text-gray-500/100">
+                Design user-friendly interfaces and conduct usability testing
+                for healthcare apps.
+              </p>
+            </div>
+            <div class="flex gap-4">
+              <button class="p-4 bg-green-200 rounded-xl interview-btn">
+                Interview
+              </button>
+              <button class="p-4 bg-red-200 rounded-xl rejected-btn">
+                Rejected
+              </button>
+            </div>
+          </div>
+          <div class="flex-shrink-0">
+            <button class="p-2 border rounded-full delete-btn">
+              <img src="./Trash.png" alt="Delete" />
+            </button>
+          </div>
+        </div>
+
+        <!-- card 7 -->
+        <div
+          class="flex justify-between p-8 border-transparent shadow-sm job-card"
+        >
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <h1 class="text-xl font-bold job-title">CyberSecure Ltd</h1>
+              <p class="job-role text-gray-500/100">Security Analyst</p>
+            </div>
+            <div>
+              <p class="job-offer text-gray-500/100">
+                On-site • Full-time • $90,000 - $115,000
+              </p>
+            </div>
+            <div class="space-y-2">
+              <p class="p-5 mb-5 font-bold text-black bg-blue-300 badge">
+                NOT APPLIED
+              </p>
+              <p class="job-note text-gray-500/100">
+                Monitor systems for vulnerabilities and implement security
+                protocols to protect data.
+              </p>
+            </div>
+            <div class="flex gap-4">
+              <button class="p-4 bg-green-200 rounded-xl interview-btn">
+                Interview
+              </button>
+              <button class="p-4 bg-red-200 rounded-xl rejected-btn">
+                Rejected
+              </button>
+            </div>
+          </div>
+          <div class="flex-shrink-0">
+            <button class="p-2 border rounded-full delete-btn">
+              <img src="./Trash.png" alt="Delete" />
+            </button>
+          </div>
+        </div>
+
+        <!-- card 8 -->
+        <div
+          class="flex justify-between p-8 border-transparent shadow-sm job-card"
+        >
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <h1 class="text-xl font-bold job-title">GreenEnergy Corp</h1>
+              <p class="job-role text-gray-500/100">Software Engineer</p>
+            </div>
+            <div>
+              <p class="job-offer text-gray-500/100">
+                Remote • Full-time • $105,000 - $130,000
+              </p>
+            </div>
+            <div class="space-y-2">
+              <p class="p-5 mb-5 font-bold text-black bg-blue-300 badge">
+                NOT APPLIED
+              </p>
+              <p class="job-note text-gray-500/100">
+                Develop applications to support renewable energy solutions and
+                smart grid systems.
+              </p>
+            </div>
+            <div class="flex gap-4">
+              <button class="p-4 bg-green-200 rounded-xl interview-btn">
+                Interview
+              </button>
+              <button class="p-4 bg-red-200 rounded-xl rejected-btn">
+                Rejected
+              </button>
+            </div>
+          </div>
+          <div class="flex-shrink-0">
+            <button class="p-2 border rounded-full delete-btn">
+              <img src="./Trash.png" alt="Delete" />
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./job.js"></script>
+  </body>
+</html>
