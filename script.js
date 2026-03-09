@@ -1,5 +1,6 @@
 let interviewList = [];
 let rejectedList = [];
+let currentStatus = "all-filter-btn";
 
 //all cards and main container
 let allCards = document.getElementById("all-cards");
@@ -16,14 +17,33 @@ let totalCount = document.getElementById("total-count");
 let interviewCount = document.getElementById("interview-count");
 let rejectedCount = document.getElementById("rejected-count");
 
+//filter count
+let jobTotalText = document.getElementById("job-total-text");
+
 //dashbourd count function
 function calculateCount() {
   let totalJobs = allCards.children.length;
   totalCount.innerText = totalJobs;
   interviewCount.innerText = interviewList.length;
   rejectedCount.innerText = rejectedList.length;
+  updateTotalText();
 }
 calculateCount();
+
+//total text update function
+function updateTotalText(){
+    let totalJobs=allCards.children.length
+    
+    if(currentStatus==="all-filter-btn"){
+        jobTotalText.innerText=`${totalJobs} jobs`
+    }
+    else if(currentStatus==="interview-filter-btn"){
+        jobTotalText.innerText=`${interviewList.length} of ${totalJobs} jobs`
+    }
+    else if(currentStatus==="rejected-filter-btn"){
+        jobTotalText.innerText=`${rejectedList.length} of ${totalJobs} jobs`
+    }
+}
 
 //tab toggle with color function
 function toggleStyle(id) {
@@ -53,6 +73,7 @@ function toggleStyle(id) {
     filterSection.classList.remove("hidden");
     renderRejected();
   }
+  updateTotalText();
 }
 
 //delegation
