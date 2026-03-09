@@ -109,6 +109,13 @@ mainContainer.addEventListener("click", function (event) {
       interviewList.push(cardInfo);
     }
 
+    //remove job card from rejected list
+    rejectedList = rejectedList.filter((i) => i.jobTitle != cardInfo.jobTitle);
+    //after remove rerender the html
+    if (currentStatus == "rejected-filter-btn") {
+      renderRejected();
+    }
+
     //count the card of interview list
     calculateCount();
   } else if (event.target.classList.contains("rejected-btn")) {
@@ -137,6 +144,15 @@ mainContainer.addEventListener("click", function (event) {
 
     if (!jobExist) {
       rejectedList.push(cardInfo);
+    }
+
+    //remove job card from interview list
+    interviewList = interviewList.filter(
+      (i) => i.jobTitle != cardInfo.jobTitle,
+    );
+    //after remove rerender the html
+    if (currentStatus == "interview-filter-btn") {
+      renderInterview();
     }
 
     //count the card from rejected
