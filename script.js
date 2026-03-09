@@ -57,3 +57,73 @@ function toggleStyle(id) {
     renderRejected();
   }
 }
+
+
+
+//delegation
+
+mainContainer.addEventListener("click", function (event) {
+  //for interview btn
+  if (event.target.classList.contains("interview-btn")) {
+    let parentNode = event.target.parentNode.parentNode;
+    console.log(parentNode);
+
+    let jobTitle = parentNode.querySelector(".job-title").innerText;
+    let jobRole = parentNode.querySelector(".job-role").innerText;
+    let jobOffer = parentNode.querySelector(".job-offer").innerText;
+    //let badgeElement = parentNode.querySelector(".badge").innerText;
+    let jobNote = parentNode.querySelector(".job-note").innerText;
+
+    let badgeElement = parentNode.querySelector(".badge");
+    badgeElement.innerText = "Interview";
+    badgeElement.classList.remove("bg-green-500", "bg-red-500");
+    badgeElement.classList.add("bg-green-500", "text-white");
+
+    let cardInfo = {
+      jobTitle,
+      jobRole,
+      jobOffer,
+      badge: "Interview",
+      jobNote,
+    };
+
+    let jobExist = interviewList.find((i) => i.jobTitle == cardInfo.jobTitle);
+
+    if (!jobExist) {
+      interviewList.push(cardInfo);
+    }
+
+    //count the card of interview list
+    calculateCount();
+  } else if (event.target.classList.contains("rejected-btn")) {
+    let parentNode = event.target.parentNode.parentNode;
+
+    let jobTitle = parentNode.querySelector(".job-title").innerText;
+    let jobRole = parentNode.querySelector(".job-role").innerText;
+    let jobOffer = parentNode.querySelector(".job-offer").innerText;
+    //let badgeElement = parentNode.querySelector(".badge").innerText;
+    let jobNote = parentNode.querySelector(".job-note").innerText;
+
+    let badgeElement = parentNode.querySelector(".badge");
+    badgeElement.innerText = "Rejected";
+    badgeElement.classList.remove("bg-green-500", "bg-red-500");
+    badgeElement.classList.add("bg-red-500", "text-white");
+
+    let cardInfo = {
+      jobTitle,
+      jobRole,
+      jobOffer,
+      badge: "Rejected",
+      jobNote,
+    };
+
+    let jobExist = rejectedList.find((i) => i.jobTitle == cardInfo.jobTitle);
+
+    if (!jobExist) {
+      rejectedList.push(cardInfo);
+    }
+
+    //count the card from rejected
+    calculateCount();
+  }
+});
