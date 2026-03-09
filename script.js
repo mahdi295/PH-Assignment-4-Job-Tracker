@@ -16,7 +16,6 @@ let totalCount = document.getElementById("total-count");
 let interviewCount = document.getElementById("interview-count");
 let rejectedCount = document.getElementById("rejected-count");
 
-
 //dashbourd count function
 function calculateCount() {
   let totalJobs = allCards.children.length;
@@ -25,8 +24,6 @@ function calculateCount() {
   rejectedCount.innerText = rejectedList.length;
 }
 calculateCount();
-
-
 
 //tab toggle with color function
 function toggleStyle(id) {
@@ -57,8 +54,6 @@ function toggleStyle(id) {
     renderRejected();
   }
 }
-
-
 
 //delegation
 
@@ -127,3 +122,105 @@ mainContainer.addEventListener("click", function (event) {
     calculateCount();
   }
 });
+
+//render sections
+
+function renderInterview() {
+  filterSection.innerHTML = "";
+
+  for (let interview of interviewList) {
+    let div = document.createElement("div");
+    div.className =
+      "flex justify-between p-8 mb-4 border-transparent shadow-sm job-card";
+    div.innerHTML = `
+            <div class="space-y-4">
+            <div class="space-y-2">
+              <h1 class="text-xl font-bold job-title">${interview.jobTitle}</h1>
+              <p class="job-role text-gray-500/100">${interview.jobRole}</p>
+            </div>
+            <div>
+              <p class="job-offer text-gray-500/100">
+                ${interview.jobOffer}
+              </p>
+            </div>
+
+            <div class="space-y-2">
+              <p
+                class="p-5 mb-5 font-bold text-white bg-green-500 badge"
+              >
+                ${interview.badge}
+              </p>
+              <p class="job-note text-gray-500/100">
+                ${interview.jobNote}
+              </p>
+            </div>
+
+            <div class="flex gap-4">
+              <button class="p-4 bg-green-200 rounded-xl interview-btn">
+                Interview
+              </button>
+              <button class="p-4 bg-red-200 rounded-xl rejected-btn">
+                Rejected
+              </button>
+            </div>
+          </div>
+          <div class="flex-shrink-0">
+            <button class="p-2 border rounded-full delete-btn">
+              <img src="./Trash.png" alt="Delete" />
+            </button>
+          </div>
+        `;
+    filterSection.append(div);
+  }
+}
+
+//render rejected section
+
+function renderRejected() {
+  filterSection.innerHTML = "";
+  
+  for (let rejected of rejectedList) {
+    let div = document.createElement("div");
+    div.className =
+      "flex justify-between p-8 mb-4 border-transparent shadow-sm job-card";
+    div.innerHTML = `
+            <div class="space-y-4">
+            <div class="space-y-2">
+              <h1 class="text-xl font-bold job-title">${rejected.jobTitle}</h1>
+              <p class="job-role text-gray-500/100">${rejected.jobRole}</p>
+            </div>
+            <div>
+              <p class="job-offer text-gray-500/100">
+                ${rejected.jobOffer}
+              </p>
+            </div>
+
+            <div class="space-y-2">
+              <p
+                class="p-5 mb-5 font-bold text-white bg-red-500 badge"
+              >
+                ${rejected.badge}
+              </p>
+              <p class="job-note text-gray-500/100">
+                ${rejected.jobNote}
+              </p>
+            </div>
+
+            <div class="flex gap-4">
+              <button class="p-4 bg-green-200 rounded-xl interview-btn">
+                Interview
+              </button>
+              <button class="p-4 bg-red-200 rounded-xl rejected-btn">
+                Rejected
+              </button>
+            </div>
+          </div>
+          <div class="flex-shrink-0">
+            <button class="p-2 border rounded-full delete-btn">
+              <img src="./Trash.png" alt="Delete" />
+            </button>
+          </div>
+        `;
+    filterSection.append(div);
+  }
+}
